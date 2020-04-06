@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-rsi'
 Plugin 'ervandew/supertab.git'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -26,6 +27,15 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'hashivim/vim-terraform'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'nvie/vim-flake8'
+Plugin 'vim-syntastic/syntastic'
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'scrooloose/nerdtree'
 " Plugin 'altercation/vim-colors-solarized'
 " Plugin 'Townk/vim-autoclose'
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -85,6 +95,9 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+" Use F9 to run python file
+nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -99,6 +112,9 @@ endif
 " Clear highlighting on escape in normal mode
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+" Format json
+nmap jq :%!jq
 
 " Splitjoin
 nmap sj :SplitjoinSplit<cr>
@@ -124,3 +140,51 @@ let g:rails_projections = {
 set spelllang=en
 " set spell
 color slate
+
+" Enable code folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" Set python indent
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=120 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+let python_highlight_all=1
+
+let g:airline_powerline_fonts = 1
+set t_Co=256
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+" let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+" Terraform
+" let g:terraform_align=1
+
