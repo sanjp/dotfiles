@@ -35,7 +35,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-syntastic/syntastic'
 " Plugin 'davidhalter/jedi-vim'
-" Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " Plugin 'altercation/vim-colors-solarized'
 " Plugin 'Townk/vim-autoclose'
 " plugin from http://vim-scripts.org/vim/scripts.html
@@ -116,6 +116,9 @@ nnoremap <esc>^[ <esc>^[
 " Format json
 nmap jq :%!jq
 
+" Format terraform
+nnoremap ,tf :%!terraform fmt -no-color -
+
 " Splitjoin
 nmap sj :SplitjoinSplit<cr>
 nmap sk :SplitjoinJoin<cr>
@@ -139,7 +142,7 @@ let g:rails_projections = {
 " Spell check
 set spelllang=en
 " set spell
-color slate
+color ron
 
 " Enable code folding
 set foldmethod=indent
@@ -188,3 +191,5 @@ let g:NERDToggleCheckAllLines = 1
 " Terraform
 " let g:terraform_align=1
 
+" Syntastic
+let g:syntastic_python_checkers = ['flake8']
