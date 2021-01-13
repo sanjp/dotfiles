@@ -19,3 +19,6 @@ alias prod-db-tunnel='ssh -f -N prod-orom-db-tunnel'
 alias stage-db-tunnel='ssh -f -N stage-orom-db-tunnel'
 alias test-db-tunnel='ssh -f -N test-orom-db-tunnel'
 alias splunk-tunnel='ssh -f -N splunk-tunnel'
+alias ec2-describe-instances='aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceType, Placement.AvailabilityZone, State.Name, InstanceId, VpcId, Tags[?Key==\`Name\`] | [0].Value]" --output table'
+alias kc='kubectl'
+alias parse-sfcc-dlq-msg="cat sfcc_dlq.json | jq '.Body | fromjson | .Message | fromjson'"
